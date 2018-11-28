@@ -1,0 +1,22 @@
+{
+  "name": "marvel-nodejs",
+  "version": "0.0.1",
+  "description": "collect data from marvel API",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "npm"
+  ],
+  "author": "mojtso",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.7"
+  }
+}
