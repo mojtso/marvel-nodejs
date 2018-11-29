@@ -9,7 +9,7 @@ exports.get_characters = (req, res) => {
 
     // Set the headers
     var headers = {
-        'content-type': 'application/json; charset=utf-8',
+        'content-type': 'application/json',
     }
 
     // Configure the request
@@ -34,15 +34,10 @@ exports.get_characters = (req, res) => {
         }
 
         if(response.statusCode >= 200 && response.statusCode <= 500) {
-            var characters = [];
-            characters = body.results;
-            res.status(200).json(body);
+            var newJson = JSON.parse(body);
+            res.status(200).json(newJson);
         }
     });
-
-    
-
-    
 };
 
 /*
