@@ -4,6 +4,7 @@ let md5 = require('md5');
 exports.get_characters = (req, res) => {
 
     const marvel_url = "https://gateway.marvel.com/v1/public/characters";
+    const apiKey = "60a07f6996f6157b689898fc65f03be9"
     const privateKey = "f73672ce2f8f9b88e855722dee6461316678b4b4";
 
     // Set the headers
@@ -13,16 +14,16 @@ exports.get_characters = (req, res) => {
 
     // Configure the request
     let date = new Date();
-    console.log(date+'');
+    let hash = md5(date+privateKey+apiKey);
 
     var options = {
         url: marvel_url,
         method: 'GET',
         headers: headers,
         qs: {
-            'apikey': '60a07f6996f6157b689898fc65f03be9', 
-            'ts': date+'',
-            'hash': md5(privateKey)
+            'apikey': apiKey, 
+            'ts': date+"",
+            'hash': hash
         }
     }
 
