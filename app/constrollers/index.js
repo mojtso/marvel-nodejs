@@ -9,7 +9,7 @@ exports.get_characters = (req, res) => {
 
     // Set the headers
     var headers = {
-        'Content-Type':     'application/x-www-form-urlencoded',
+        'Content-Type':     'application/json',
     }
 
     // Configure the request
@@ -35,6 +35,7 @@ exports.get_characters = (req, res) => {
 
         if(response.statusCode >= 200 && response.statusCode <= 500) {
             var characters = [];
+            characters = body.results;
             res.status(200).json(body);
         }
     });
