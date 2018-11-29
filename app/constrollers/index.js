@@ -9,7 +9,7 @@ exports.get_characters = (req, res) => {
 
     // Set the headers
     var headers = {
-        'Content-Type':     'application/json',
+        'Content-Type': 'application/json; charset=utf-8',
     }
 
     // Configure the request
