@@ -30,17 +30,17 @@ exports.get_characters = (req, res) => {
     // Start the request
     request(options, function (error, response, body) {
         if (error) {
-            console.log(error);
+            res.statusCode(400).json({message: error});
         }
 
         if(response.statusCode >= 200 && response.statusCode <= 500) {
-            console.log(body)
+            res.status(200).json(body);
         }
     });
 
     
 
-    res.status(200).json({ });
+    
 };
 
 /*
