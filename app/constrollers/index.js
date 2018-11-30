@@ -36,7 +36,8 @@ exports.get_characters = (req, res) => {
         if(response.statusCode >= 200 && response.statusCode <= 500) {
             var newJson = JSON.parse(body);
             var characters = [];
-            newJson.data.results.array.forEach(element => {
+
+            for(var i = 0; i <  newJson.data.results.length; i++) {
                 characters.push({
                     id: element.id,
                     name: element.name,
@@ -44,7 +45,7 @@ exports.get_characters = (req, res) => {
                     modified: element.modified,
                     thumbnail: element.thumbnail
                 });
-            });
+            }
             res.status(200).json(characters);
         }
     });
