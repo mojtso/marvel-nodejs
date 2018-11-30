@@ -40,7 +40,7 @@ exports.get_characters = (req, res) => {
             for(var i = 0; i <  newJson.data.results.length; i++) {
                 characters.push({
                     id: newJson.data.results[i].id,
-                    name: ewJson.data.results[i].name,
+                    name: newJson.data.results[i].name,
                     description: newJson.data.results[i].description,
                     modified: newJson.data.results[i].modified,
                     thumbnail: newJson.data.results[i].thumbnail
