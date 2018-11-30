@@ -39,11 +39,11 @@ exports.get_characters = (req, res) => {
 
             for(var i = 0; i <  newJson.data.results.length; i++) {
                 characters.push({
-                    id: element.id,
-                    name: element.name,
-                    description: element.description,
-                    modified: element.modified,
-                    thumbnail: element.thumbnail
+                    id: newJson.data.results[i].id,
+                    name: ewJson.data.results[i].name,
+                    description: newJson.data.results[i].description,
+                    modified: newJson.data.results[i].modified,
+                    thumbnail: newJson.data.results[i].thumbnail
                 });
             }
             res.status(200).json(characters);
