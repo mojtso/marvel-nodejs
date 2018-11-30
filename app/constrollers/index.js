@@ -50,33 +50,3 @@ exports.get_characters = (req, res) => {
         }
     });
 };
-
-/*
-
-var characters = [];
-    characters.push(character_1);
-    characters.push(character_2);
-
-let character_1 = {
-        id: 1,
-        name: "Agent Brand",
-        description: "Test description",
-        modified: "2013-10-24T13:09:30-0400",
-        thumbnail: {
-            path: "http://i.annihil.us/u/prod/marvel/i/mg/4/60/52695285d6e7e",
-            extension: "jpg"
-        }
-    }
-
-    let character_2 = {
-        id: 2,
-        name: "Test Lastname",
-        description: "Test Also",
-        modified: "2013-10-24T13:09:30-0400",
-        thumbnail: {
-            path: "http://i.annihil.us/u/prod/marvel/i/mg/4/60/52695285d6e7e",
-            extension: "jpg"
-        }
-    }
-
- */
