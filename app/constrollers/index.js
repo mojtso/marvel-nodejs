@@ -33,7 +33,7 @@ exports.get_characters = (req, res) => {
             res.statusCode(400).json({message: error});
         } 
 
-        if(response.statusCode >= 200 && response.statusCode <= 500) {
+        if(response.statusCode >= 200 && response.statusCode <= 300) {
             var newJson = JSON.parse(body);
             var characters = [];
 
