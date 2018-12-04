@@ -52,6 +52,8 @@ exports.get_characters = (req, res) => {
             }
             
             res.status(200).json(characters);
+        } else {
+            res.status(404).json({ message: 'Resources Not Found'});
         }
     });
 };
