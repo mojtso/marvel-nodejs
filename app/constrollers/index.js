@@ -44,7 +44,9 @@ exports.get_characters = (req, res) => {
                         name: element.name,
                         description: element.description,
                         modified: element.modified,
-                        thumbnail: element.thumbnail
+                        thumbnail: element.thumbnail,
+                        comics: element.comics.items,
+                        stories: element.stories.items,
                     });
                 });
             }
