@@ -1,9 +1,12 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
+import express from 'express';
+import bodyParser from 'body-parser';
+import exphbs from 'express-hbs';
+import fp from 'path';
+import morgan from 'morgan';
 
-const charactersRoute = require('./app/routes/index');
+const app = express();
+
+import userRouter from './app/routes/api/user'
 
 
 app.use(morgan('dev'));
@@ -23,9 +26,23 @@ app.use((req, res, next) => {
     next();
 });
 
+//PAGES CONFIG
+function relative(path) {
+    return fp.join(__dirname, path);
+}
+
+const viewsDir = relative('views');
+app.use(express.static(relative('public_static')));
+app.engine('hbs', exphbs.express4({
+    defaultLayout: relative('views/index.hbs')
+}));
+app.set('view engine', 'hbs');
+app.set('views', viewsDir);
+//END PAGES CONFIG
+
 
 //Routes handling request
-app.use('/characters', charactersRoute);
+app.use('/', userRouter);
 
 
 app.use((req, res, next) => {
