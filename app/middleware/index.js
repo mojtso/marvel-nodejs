@@ -1,5 +1,6 @@
 const redirectLogin = (req, res, next) => {
-    if(!req.session.userId) {
+    const { userId } = req.session.userId;
+    if(userId == null || userId == undefined) {
         res.redirect('/');
     } else {
         next();
@@ -7,7 +8,8 @@ const redirectLogin = (req, res, next) => {
 };
 
 const redirectHome = (req, res, next) => {
-    if(req.session.userId) {
+    const { userId } = req.session.userId;
+    if(userId != null || userId !== undefined) {
         res.redirect("home");
     } else {
         next();

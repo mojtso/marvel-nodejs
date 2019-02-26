@@ -4,7 +4,7 @@
   "description": "API",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node index.js"
+    "dev": "nodemon --exec babel-node app.js"
   },
   "keywords": [
     "nodejs",

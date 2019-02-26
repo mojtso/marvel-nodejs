@@ -4,7 +4,7 @@ export const {
     SESS_SECRET='ssh!pass!',
     SESS_LIFETIME=1000 * 60 * 60 * 2, //two hours
 
-    REDIS_HOST='0.0.0.0',
+    REDIS_HOST='127.0.0.1',
     REDIS_PORT=6379,
     REDIS_PASSWORD='',
 
