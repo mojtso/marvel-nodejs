@@ -3,10 +3,16 @@ import bodyParser from 'body-parser';
 import exphbs from 'express-hbs';
 import fp from 'path';
 import morgan from 'morgan';
+import session from 'express-session';
+import { createClient as createRedisClient } from'redis';
+import connectRedis from 'connect-redis';
+import { REDIS_HOST, SESS_NAME, SESS_SECRET, SESS_LIFETIME } from './constants';
 
 const app = express();
 
-import userRouter from './app/routes/api/user'
+import indexRouter from './app/routes/pages';
+import userRouter from './app/routes/api/user';
+
 
 
 app.use(morgan('dev'));
@@ -40,9 +46,38 @@ app.set('view engine', 'hbs');
 app.set('views', viewsDir);
 //END PAGES CONFIG
 
+//Configure Redis
+(async () => {
+    const redisClient = createRedisClient({
+        host: 'redis',
+        port: REDIS_HOST,
+    });
+
+    redisClient.on('connect', () => {
+        console.log('App connected to Redis')
+    });
+    
+    const RedisStore = connectRedis(session);
+    const store = new RedisStore({
+        client: redisClient
+    });
+
+    app.use(session({
+        store,
+        name: SESS_NAME,
+        secret: SESS_SECRET,
+        cookie: {
+            maxAge: SESS_LIFETIME,
+            sameSite: true,
+            secure: false,
+        }
+    }));
+})();
+
 
 //Routes handling request
-app.use('/', userRouter);
+app.use('/', indexRouter);
+app.use('/api', userRouter);
 
 
 app.use((req, res, next) => {
