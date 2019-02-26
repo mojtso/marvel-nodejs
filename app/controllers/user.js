@@ -1,5 +1,11 @@
-// const models = require('../models');
 
-exports.create_user = (req, res) => {
-    res.send({ message: 'Hi from UserController'});
-}
+
+exports.register = (req, res) => {
+    const { username, email, password } = req.body;
+    
+};
+
+exports.login = (req, res) => {
+    const { email, password } = req.body;
+
+};

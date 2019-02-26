@@ -6,7 +6,7 @@ import morgan from 'morgan';
 import session from 'express-session';
 import { createClient as createRedisClient } from'redis';
 import connectRedis from 'connect-redis';
-import { REDIS_HOST, SESS_NAME, SESS_SECRET, SESS_LIFETIME } from './constants';
+import { REDIS_HOST, SESS_NAME, SESS_SECRET, SESS_LIFETIME, IN_PROD } from './constants';
 
 const app = express();
 
@@ -47,32 +47,32 @@ app.set('views', viewsDir);
 //END PAGES CONFIG
 
 //Configure Redis
-(async () => {
-    const redisClient = createRedisClient({
-        host: 'redis',
-        port: REDIS_HOST,
-    });
+const redisClient = createRedisClient({
+    host: 'redis',
+    port: REDIS_HOST,
+});
 
-    redisClient.on('connect', () => {
-        console.log('App connected to Redis')
-    });
-    
-    const RedisStore = connectRedis(session);
-    const store = new RedisStore({
-        client: redisClient
-    });
+redisClient.on('connect', () => {
+    console.log('App connected to Redis')
+});
 
-    app.use(session({
-        store,
-        name: SESS_NAME,
-        secret: SESS_SECRET,
-        cookie: {
-            maxAge: SESS_LIFETIME,
-            sameSite: true,
-            secure: false,
-        }
-    }));
-})();
+const RedisStore = connectRedis(session);
+const store = new RedisStore({
+    client: redisClient
+});
+
+app.use(session({
+    // store,
+    name: SESS_NAME,
+    resave: false,
+    saveUninitialized: false,
+    secret: SESS_SECRET,
+    cookie: {
+        maxAge: SESS_LIFETIME,
+        sameSite: true, //strict
+        secure: IN_PROD,
+    }
+}));
 
 
 //Routes handling request
