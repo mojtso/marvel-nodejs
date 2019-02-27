@@ -8,7 +8,7 @@ if(process.env.NODE_ENV === 'production') {
     var sequelize = new Sequelize(process.env.DATABASE_URL);
 }else {
     console.log("..running ", env);
-    var sequelize = new Sequelize('user_db', 'root', 'YourRootPassword', {
+    var sequelize = new Sequelize('user_db', 'root', 'MyNewPass', {
         host: 'localhost',
         dialect: 'mysql',
         define: {

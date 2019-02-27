@@ -97,15 +97,13 @@ app.use((error, req, res, next) => {
     });
 });
 
-const port = process.env.PORT || 3000;
-const server = http.createServer(app);
-server.listen(port);
+// const port = process.env.PORT || 3000;
+// const server = http.createServer(app);
+// server.listen(port);
 
-
-
-// models.sequelize.sync({ }).then((results) => {
-//     const port = process.env.PORT || 3000;
-//     const server = http.createServer(app);
-//     server.listen(port);
-// });
+models.sequelize.sync({ }).then((results) => {
+    const port = process.env.PORT || 3000;
+    const server = http.createServer(app);
+    server.listen(port);
+});
 
