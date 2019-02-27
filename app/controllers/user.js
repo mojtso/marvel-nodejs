@@ -1,24 +1,32 @@
-import { SESS_NAME } from '../../constants';
+import { SESS_NAME } from '../utils/constants';
+import models from '../models';
+import { hash, compare } from 'bcryptjs';
 
-exports.register = (req, res) => {
+const register = (req, res) => {
     const { username, email, password } = req.body;
     
+    
     // return home
+    res.send({ message: 'Recieved'});
 };
 
-exports.login = (req, res) => {
+const login = (req, res) => {
     const { email, password } = req.body;
 
+    console.log(req.body);
+    // res.send({ message: 'ok'});
     //return home
 };
 
-exports.logout = (req, res) => {
+const logout = (req, res) => {
     req.session.destroy(err => {
         if(err) {
-            return res.redirect('index');
+            return res.redirect('entry');
         }
 
         res.clearCookies(SESS_NAME);
-        res.redirect('index');
+        res.redirect('entry');
     });
 };
+
+export { register, login, logout };

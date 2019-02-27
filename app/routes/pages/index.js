@@ -7,11 +7,11 @@ router.get('/', (req, res) => {
     
     try {
         if(req.session.userId) {
-            res.send('home');
+            res.render('layout/home');
         }
-        res.render('index');
+        res.render('layout/entry');
     } catch (e) {
-        res.render('index');
+        res.render('layout/index');
     }
     
 });
@@ -19,12 +19,12 @@ router.get('/', (req, res) => {
 router.get('/home', (req, res) => {
     try {
         if(!req.session.userId) {
-            res.render('index');
+            res.render('layout/index'); 
         }
 
-        res.send('You are home');
+        res.render('layout/home');
     } catch(e) {
-        res.render('index');
+        res.render('layout/index');
     }
 });
 

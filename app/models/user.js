@@ -4,6 +4,9 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             unique: true
         },
+        username: {
+            type: DataTypes.STRING
+        },
         password: {
             type: DataTypes.STRING
         }
